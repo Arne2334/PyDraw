@@ -37,14 +37,15 @@ ax = fig.add_subplot(111, projection='3d')
 # 在主图中添加子图（画中画）
 ax_inset = inset_axes(ax, width="20%", height="20%", loc='lower right', bbox_to_anchor=(0.1, 0.1, 0.8, 0.8), bbox_transform=ax.transAxes, axes_class=Axes3D)
 ax_inset.set_title("放大视图", fontsize=8)
-ax_inset.set_xlim(-50, 50)
-ax_inset.set_ylim(-50, 50)
-ax_inset.set_zlim(-10, 20)
+ax_inset.set_xlim(-50, 50)     
+ax_inset.set_ylim(-50, 50)     
+ax_inset.set_zlim(-20, 40)      
 
-# 绘制导弹位置
-for name, pos in missiles.items():
-    ax.scatter(pos[0], pos[1], pos[2], c='red', marker='^', s=100, label=f'导弹{name}' if name == 'M1' else "")
-    ax.text(pos[0], pos[1], pos[2], f'{name}', color='red')
+
+# # 绘制导弹位置
+# for name, pos in missiles.items():
+#     ax.scatter(pos[0], pos[1], pos[2], c='red', marker='^', s=100, label=f'导弹{name}' if name == 'M1' else "")
+#     ax.text(pos[0], pos[1], pos[2], f'{name}', color='red')
 
 # # 绘制无人机位置
 # for name, pos in drones.items():
@@ -95,11 +96,11 @@ def plot_smoke_cloud(ax, center, radius, resolution=50, color='gray', alpha=0.3)
     ax.plot_surface(x, y, z, color=color, alpha=alpha)
 
 # 在假目标位置上方绘制烟雾团（高度设为500米）
-# plot_smoke_cloud(ax, center=(0, 0, 500), radius=100, color='gray', alpha=0.3)
-# plot_smoke_cloud(ax, center=(0, 200, 500), radius=100, color='gray', alpha=0.3)
+plot_smoke_cloud(ax, center=(0, 0, 500), radius=5, color='gray', alpha=0.3)
+plot_smoke_cloud(ax, center=(0, 200, 500), radius=5, color='gray', alpha=0.3)
 
 # 在主图中绘制圆柱体（原始大小）
-plot_cylinder(ax, center=(0, 0, 0), radius=7, height=10, color='purple', alpha=0.3)
+# plot_cylinder(ax, center=(0, 0, 0), radius=7, height=10, color='purple', alpha=0.3)
 plot_cylinder(ax, center=(0, 200, 0), radius=7, height=10, color='purple', alpha=0.3)
 
 # 在子图中绘制放大的圆柱体
